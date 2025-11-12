@@ -1,0 +1,37 @@
+@defer (on viewport) {
+<div class="table-container">
+    <table class="episode-table">
+        <thead>
+            <tr>
+                <th> Nombre </th>
+                <th> Episodio </th>
+                <th> Fecha Estreno </th>
+                <th> Fecha de Creación </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (episode of episodes; track episode.name) {
+            <tr>
+                <td> {{ episode.name }} </td>
+                <td> {{ episode.episode }} </td>
+                <td> {{ episode.air_date | date: 'short'}} </td>
+                <td> {{ episode.created | date: 'short'}} </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <div class="pagination">
+        <button (click)="prev()">Prev </button>
+        <span>Page {{ page() }}</span>
+        <button (click)="next()"> Next</button>
+    </div>
+</div>
+} @placeholder {
+<div class="loading-placeholder">
+    Desplázate hacia abajo para cargar la lista de episodios.
+</div>
+} @loading {
+<div class="loading-spinner">
+    Cargando datos de episodios...
+</div>
+}
